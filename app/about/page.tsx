@@ -26,9 +26,17 @@ export default function AboutPage() {
           <h1 className="text-3xl sm:text-4xl font-bold text-[var(--term-accent)] mb-2">
             {CONTENT.name}
           </h1>
-          <p className="text-lg opacity-70">
+          <p className="text-lg opacity-70 mb-6">
             {CONTENT.title} — {CONTENT.location}
           </p>
+          <a
+            href={CONTENT.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-4 py-2 text-sm border border-[var(--term-accent)] text-[var(--term-accent)] rounded hover:bg-[var(--term-accent)] hover:text-[var(--term-bg)] transition-colors"
+          >
+            Download Resume ↓
+          </a>
         </div>
 
         {/* Bio */}
