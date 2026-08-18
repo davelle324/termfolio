@@ -2,7 +2,7 @@
 
 import { loadSavedTheme, THEMES } from "@/lib/themes";
 
-const LINKS = ["help", "about", "projects", "apps", "contact", "clear"] as const;
+const LINKS = ["help", "about", "projects", "apps", "resume", "contact", "clear"] as const;
 const THEME_CYCLE = Object.keys(THEMES);
 
 export default function QuickLinks({

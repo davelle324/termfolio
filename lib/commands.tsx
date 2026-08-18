@@ -20,8 +20,9 @@ function HelpOutput() {
     ["help", "show this message"],
     ["about", "learn about me"],
     ["projects", "browse my GitHub projects"],
-    ["contact", "get in touch"],
     ["apps", "browse my live projects"],
+    ["resume", "download my resume"],
+    ["contact", "get in touch"],
     ["nvidia-smi", "system diagnostics"],
     ["history", "show command history"],
     ["theme <name>", `switch color theme (${Object.keys(THEMES).join(", ")})`],
@@ -201,8 +202,27 @@ function AppsOutput() {
   );
 }
 
+function ResumeOutput() {
+  return (
+    <div className="my-1 space-y-0.5">
+      <p className="text-[var(--term-accent)]">resume:</p>
+      <div className="pl-4">
+        <a
+          href={CONTENT.resumeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--term-link)] underline hover:opacity-75"
+        >
+          {CONTENT.resumeUrl}
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export const COMMANDS: Record<string, CommandHandler> = {
   help: () => <HelpOutput />,
+  resume: () => <ResumeOutput />,
   about: () => <AboutOutput />,
   contact: () => <ContactOutput />,
   apps: () => <AppsOutput />,

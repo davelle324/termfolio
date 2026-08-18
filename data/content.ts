@@ -15,6 +15,7 @@ export const CONTENT = {
     linkedin: "https://linkedin.com/in/davelle-carreiro",
     letterboxd: "https://letterboxd.com/davelle324",
   },
+  resumeUrl: "/resume.pdf",
   pinnedRepos: [] as string[],
   apps: [
     {
