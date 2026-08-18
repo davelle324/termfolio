@@ -21,7 +21,10 @@ const WELCOME: React.ReactNode = (
     </p>
     <p className="opacity-60 text-sm">
       type <span className="text-[var(--term-fg)]">help</span> to see available
-      commands, or click the shortcuts above.
+      commands, or click the shortcuts above.{" "}
+      <a href="/about" className="underline hover:opacity-100">
+        not a dev?
+      </a>
     </p>
   </div>
 );

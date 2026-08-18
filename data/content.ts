@@ -7,6 +7,7 @@ export const CONTENT = {
   bio: [
     "Hi, I'm Davelle — I love getting a great idea and putting all my energy into it, only to never touch it again in 2 days.",
     "I work across the stack with a focus on backend architecture, developer tooling, and automation. I also dabble in AI.",
+    "In my free time I love to watch and rate movies and play pickleball!"
   ],
   contact: {
     email: "davelle.carreiro@gmail.com",
