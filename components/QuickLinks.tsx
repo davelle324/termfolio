@@ -38,7 +38,7 @@ export default function QuickLinks({
         href="/about"
         className="ml-auto px-3 py-1 text-xs border border-[var(--term-dim)] text-[var(--term-dim)] brightness-200 hover:border-[var(--term-accent)] hover:text-[var(--term-accent)] transition-colors rounded"
       >
-        [not a dev?]
+        [simple view]
       </a>
     </div>
   );
