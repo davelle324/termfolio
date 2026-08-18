@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --term-bg: #0d0d0d;
+  --term-fg: #00ff41;
+  --term-accent: #00cc33;
+  --term-cursor: #00ff41;
+  --term-dim: #004d13;
+  --term-error: #ff4444;
+  --term-link: #00ffaa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--term-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--term-dim);
+  border-radius: 2px;
+}
