@@ -21,6 +21,7 @@ function HelpOutput() {
     ["about", "learn about me"],
     ["projects", "browse my GitHub projects"],
     ["contact", "get in touch"],
+    ["apps", "browse my live projects"],
     ["nvidia-smi", "system diagnostics"],
     ["history", "show command history"],
     ["theme <name>", `switch color theme (${Object.keys(THEMES).join(", ")})`],
@@ -46,7 +47,7 @@ function AboutOutput() {
         {CONTENT.name} / {CONTENT.title} / {CONTENT.location}
       </p>
       {CONTENT.bio.map((line, i) => (
-        <p key={i} className={line === "" ? "h-2" : "pl-4"}>
+        <p key={i} className="pl-4 mt-1">
           {line}
         </p>
       ))}
@@ -71,7 +72,7 @@ function ContactOutput() {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[var(--term-link)] underline hover:opacity-75"
+            className="text-[var(--term-link)] underline hover:opacity-75 break-all"
           >
             {value}
           </a>
@@ -174,10 +175,37 @@ function HistoryOutput({ entries }: { entries: string[] }) {
   );
 }
 
+function AppsOutput() {
+  if (CONTENT.apps.length === 0) {
+    return <p className="my-1 opacity-50">no apps deployed yet.</p>;
+  }
+  return (
+    <div className="my-1 space-y-2">
+      <p className="text-[var(--term-accent)]">live projects:</p>
+      {CONTENT.apps.map((app) => (
+        <div key={app.name} className="pl-4">
+          <a
+            href={app.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--term-link)] underline hover:opacity-75 font-semibold"
+          >
+            {app.name}
+          </a>
+          {app.description && (
+            <p className="text-sm opacity-70 mt-0.5">{app.description}</p>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export const COMMANDS: Record<string, CommandHandler> = {
   help: () => <HelpOutput />,
   about: () => <AboutOutput />,
   contact: () => <ContactOutput />,
+  apps: () => <AppsOutput />,
   "nvidia-smi": () => <NvidiaSmiOutput />,
   history: (_args, ctx) => {
     const entries = [...ctx.getHistory()].reverse();

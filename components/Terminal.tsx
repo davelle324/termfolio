@@ -153,7 +153,7 @@ export default function Terminal() {
   );
 
   return (
-    <div className="h-screen w-screen bg-[var(--term-bg)] text-[var(--term-fg)] font-mono flex flex-col p-4 sm:p-6 overflow-hidden text-sm sm:text-base">
+    <div className="h-[100dvh] w-screen bg-[var(--term-bg)] text-[var(--term-fg)] font-mono flex flex-col p-3 sm:p-6 overflow-hidden text-xs sm:text-sm md:text-base">
       <QuickLinks onCommand={handleQuickLink} />
       <div className="flex-1 overflow-y-auto">
         {entries.map((entry) => (

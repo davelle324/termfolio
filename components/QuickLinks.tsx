@@ -2,7 +2,7 @@
 
 import { loadSavedTheme, THEMES } from "@/lib/themes";
 
-const LINKS = ["help", "about", "projects", "contact", "clear"] as const;
+const LINKS = ["help", "about", "projects", "apps", "contact", "clear"] as const;
 const THEME_CYCLE = Object.keys(THEMES);
 
 export default function QuickLinks({
@@ -23,7 +23,7 @@ export default function QuickLinks({
         <button
           key={cmd}
           onClick={() => onCommand(cmd)}
-          className="px-3 py-1 text-xs border border-[var(--term-dim)] text-[var(--term-dim)] brightness-200 hover:border-[var(--term-accent)] hover:text-[var(--term-accent)] transition-colors rounded cursor-pointer"
+          className="px-2 py-0.5 sm:px-3 sm:py-1 text-xs border border-[var(--term-dim)] text-[var(--term-dim)] brightness-200 hover:border-[var(--term-accent)] hover:text-[var(--term-accent)] transition-colors rounded cursor-pointer"
         >
           [{cmd}]
         </button>
