@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -29,7 +30,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${jetbrainsMono.variable} h-full`}>
-      <body className="h-full font-[family-name:var(--font-mono)]">{children}</body>
+      <body className="h-full font-[family-name:var(--font-mono)]">
+          {children}
+          <Analytics />
+        </body>
     </html>
   );
 }
