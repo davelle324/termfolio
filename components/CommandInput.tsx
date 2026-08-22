@@ -1,6 +1,6 @@
 "use client";
 
-import React, { KeyboardEvent, useRef, useEffect } from "react";
+import React, { KeyboardEvent, useRef, useEffect, forwardRef, useImperativeHandle } from "react";
 
 interface Props {
   value: string;
@@ -11,8 +11,17 @@ interface Props {
   commands: string[];
 }
 
-export default function CommandInput({ value, onChange, onSubmit, onKeyDown, prompt, commands }: Props) {
+export interface CommandInputHandle {
+  focus: () => void;
+}
+
+const CommandInput = forwardRef<CommandInputHandle, Props>(function CommandInput(
+  { value, onChange, onSubmit, onKeyDown, prompt, commands },
+  ref
+) {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useImperativeHandle(ref, () => ({ focus: () => inputRef.current?.focus() }));
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -44,7 +53,6 @@ export default function CommandInput({ value, onChange, onSubmit, onKeyDown, pro
   return (
     <div
       className="flex items-center gap-2 pt-2 border-t border-[var(--term-dim)] mt-2"
-      onClick={() => inputRef.current?.focus()}
     >
       <span className="text-[var(--term-accent)] shrink-0 select-none">{prompt}</span>
       <input
@@ -62,4 +70,6 @@ export default function CommandInput({ value, onChange, onSubmit, onKeyDown, pro
       />
     </div>
   );
-}
+});
+
+export default CommandInput;

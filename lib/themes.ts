@@ -40,6 +40,26 @@ export const THEMES: Record<string, Theme> = {
     error: "#f87171",
     link: "#93c5fd",
   },
+  dracula: {
+    name: "dracula",
+    bg: "#282a36",
+    fg: "#f8f8f2",
+    accent: "#bd93f9",
+    cursor: "#bd93f9",
+    dim: "#44475a",
+    error: "#ff5555",
+    link: "#8be9fd",
+  },
+  nord: {
+    name: "nord",
+    bg: "#2e3440",
+    fg: "#d8dee9",
+    accent: "#88c0d0",
+    cursor: "#88c0d0",
+    dim: "#3b4252",
+    error: "#bf616a",
+    link: "#81a1c1",
+  },
 };
 
 export const DEFAULT_THEME = "green";

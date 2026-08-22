@@ -1,4 +1,4 @@
-.PHONY: dev build start lint typecheck check clean install
+.PHONY: dev build run lint typecheck check clean install
 
 dev:
 	npm run dev
@@ -6,7 +6,7 @@ dev:
 build:
 	npm run build
 
-start:
+run:
 	npm run start
 
 lint:

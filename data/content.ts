@@ -1,7 +1,7 @@
 export const CONTENT = {
   name: "Davelle Carreiro",
   githubUsername: "davelle324",
-  prompt: "davelle@dev:~$",
+  prompt: "guest@davelle.dev:~$",
   title: "Software Engineer",
   location: "Boston, MA",
   bio: [
@@ -26,7 +26,7 @@ export const CONTENT = {
     {
       name: "auto-deploy",
       url: "https://auto-deploy.davelle.dev",
-      description: "Used to quickly deploy simple applications (Currently only for personal use).",
+      description: "Used to quickly deploy simple applications (Currently only for personal use, demo available!).",
     },
   ],
 };

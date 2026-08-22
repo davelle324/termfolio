@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, KeyboardEvent, useCallback } from "react";
-import CommandInput from "./CommandInput";
+import CommandInput, { CommandInputHandle } from "./CommandInput";
 import OutputLine from "./OutputLine";
 import QuickLinks from "./QuickLinks";
 import { COMMANDS } from "@/lib/commands";
@@ -11,6 +11,7 @@ import { applyTheme, loadSavedTheme } from "@/lib/themes";
 interface OutputEntry {
   id: string;
   command?: string;
+  prompt?: string;
   output: React.ReactNode;
 }
 
@@ -36,11 +37,13 @@ export default function Terminal() {
   const [cmdHistory, setCmdHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [input, setInput] = useState("");
+  const [cwd, setCwd] = useState("~");
   const [entries, setEntries] = useState<OutputEntry[]>([
     { id: uid(), output: WELCOME },
   ]);
 
   const bottomRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<CommandInputHandle>(null);
   const typingRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const cmdHistoryRef = useRef<string[]>([]);
 
@@ -67,9 +70,10 @@ export default function Terminal() {
       const name = parts[0].toLowerCase();
       const args = parts.slice(1);
 
+      const currentPrompt = cwd === "~" ? CONTENT.prompt : CONTENT.prompt.replace(":~$", `:~/${cwd}$`);
       setEntries((prev) => [
         ...prev,
-        { id: uid(), command: trimmed, output: null },
+        { id: uid(), command: trimmed, prompt: currentPrompt, output: null },
       ]);
       setInput("");
       setCmdHistory((prev) => [trimmed, ...prev]);
@@ -96,6 +100,8 @@ export default function Terminal() {
       const ctx = {
         clear: clearFn,
         getHistory: () => cmdHistoryRef.current,
+        cwd,
+        setCwd,
       };
 
       try {
@@ -117,7 +123,7 @@ export default function Terminal() {
         ]);
       }
     },
-    [clearFn]
+    [clearFn, cwd]
   );
 
   const handleQuickLink = useCallback(
@@ -155,8 +161,13 @@ export default function Terminal() {
     [historyIndex, cmdHistory]
   );
 
+  const prompt = cwd === "~" ? `${CONTENT.prompt}` : CONTENT.prompt.replace(":~$", `:~/${cwd}$`);
+
   return (
-    <div className="h-[100dvh] w-screen bg-[var(--term-bg)] text-[var(--term-fg)] font-mono flex flex-col p-3 sm:p-6 overflow-hidden text-xs sm:text-sm md:text-base">
+    <div
+      className="h-[100dvh] w-screen bg-[var(--term-bg)] text-[var(--term-fg)] font-mono flex flex-col p-3 sm:p-6 overflow-hidden text-xs sm:text-sm md:text-base"
+      onClick={() => inputRef.current?.focus()}
+    >
       <QuickLinks onCommand={handleQuickLink} />
       <div className="flex-1 overflow-y-auto">
         {entries.map((entry) => (
@@ -164,7 +175,7 @@ export default function Terminal() {
             {entry.command !== undefined && (
               <div className="flex gap-2 flex-wrap">
                 <span className="text-[var(--term-accent)] shrink-0">
-                  {CONTENT.prompt}
+                  {entry.prompt ?? prompt}
                 </span>
                 <span>{entry.command}</span>
               </div>
@@ -177,11 +188,12 @@ export default function Terminal() {
         <div ref={bottomRef} />
       </div>
       <CommandInput
+        ref={inputRef}
         value={input}
         onChange={setInput}
         onSubmit={handleSubmit}
         onKeyDown={handleKeyDown}
-        prompt={CONTENT.prompt}
+        prompt={prompt}
         commands={COMMAND_NAMES}
       />
     </div>
