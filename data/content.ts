@@ -28,5 +28,10 @@ export const CONTENT = {
       url: "https://auto-deploy.davelle.dev",
       description: "Used to quickly deploy simple applications (Currently only for personal use, demo available!).",
     },
+    {
+      name: "plant-dashboard",
+      url: "https://plant-dashboard.davelle.dev",
+      description: "A plant tracker to keep up with plant care with a small social media aspect to it.",
+    },
   ],
 };
