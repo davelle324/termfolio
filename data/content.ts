@@ -33,5 +33,10 @@ export const CONTENT = {
       url: "https://plant-dashboard.davelle.dev",
       description: "A plant tracker to keep up with plant care with a small social media aspect to it.",
     },
+    {
+      name: "spending-tracker",
+      url: "https://spending-tracker.davelle.dev",
+      description: "A budgeting app for your phone: income, expenses, repeating bills, and what's still pending at your bank.",
+    },
   ],
 };
